@@ -8,6 +8,15 @@ the protocol defaults to "https". This package does not put any restrictions on 
 cookies. The app can be configured to require a header for proxying a request, for example to avoid
 a direct visit from the browser.
 
+Just append https://cors-request-api-server.herokuapp.com/ before XMLHttpRequest url
+
+## Example:
+Im using this to fetching data from steam web api:
+
+https://cors-request-api-server.herokuapp.com/http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=XXXXXXXXXXXXXXXXXX&format=json
+
+
+
 ## Example
 
 ```javascript
