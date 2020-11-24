@@ -4,11 +4,8 @@
 
 The url to proxy is literally taken from the path, validated and proxied. The protocol
 part of the proxied URI is optional, and defaults to "http". If port 443 is specified,
-the protocol defaults to "https".
-
-This package does not put any restrictions on the http methods or headers, except for
-cookies. Requesting [user credentials](http://www.w3.org/TR/cors/#user-credentials) is disallowed.
-The app can be configured to require a header for proxying a request, for example to avoid
+the protocol defaults to "https". This package does not put any restrictions on the http methods or headers, except for
+cookies. The app can be configured to require a header for proxying a request, for example to avoid
 a direct visit from the browser.
 
 ## Example
@@ -19,13 +16,13 @@ var host = process.env.HOST || '0.0.0.0';
 // Listen on a specific port via the PORT environment variable
 var port = process.env.PORT || 8080;
 
-var cors_proxy = require('cors-anywhere');
+var cors_proxy = require('mycors');
 cors_proxy.createServer({
     originWhitelist: [], // Allow all origins
     requireHeader: ['origin', 'x-requested-with'],
     removeHeaders: ['cookie', 'cookie2']
 }).listen(port, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + port);
+    console.log('Running MYCORS on ' + host + ':' + port);
 });
 
 ```
@@ -37,23 +34,16 @@ Request examples:
 * `http://localhost:8080/` - Shows usage text, as defined in `libs/help.txt`
 * `http://localhost:8080/favicon.ico` - Replies 404 Not found
 
-Live examples:
-
-* https://cors-anywhere.herokuapp.com/
-* https://robwu.nl/cors-anywhere.html - This demo shows how to use the API.
 
 ## Documentation
 
 ### Client
 
-To use the API, just prefix the URL with the API URL. Take a look at [demo.html](demo.html) for an example.
-A concise summary of the documentation is provided at [lib/help.txt](lib/help.txt).
-
 If you want to automatically enable cross-domain requests when needed, use the following snippet:
 
 ```javascript
 (function() {
-    var cors_api_host = 'cors-anywhere.herokuapp.com';
+    var cors_api_host = 'cors-request-api-server.herokuapp.com';
     var cors_api_url = 'https://' + cors_api_host + '/';
     var slice = [].slice;
     var origin = window.location.protocol + '//' + window.location.host;
@@ -75,7 +65,7 @@ If you're using jQuery, you can also use the following code **instead of** the p
 ```javascript
 jQuery.ajaxPrefilter(function(options) {
     if (options.crossDomain && jQuery.support.cors) {
-        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+        options.url = 'https://cors-request-api-server.herokuapp.com/' + options.url;
     }
 });
 ```
@@ -105,7 +95,7 @@ proxy requests. The following options are supported:
 * array of lowercase strings `removeHeaders` - Exclude certain headers from being included in the request.  
   Example: `["cookie"]`
 * dictionary of lowercase strings `setHeaders` - Set headers for the request (overwrites existing ones).  
-  Example: `{"x-powered-by": "CORS Anywhere"}`
+  Example: `{"x-powered-by": "CLIMBINGPOET CORS"}`
 * number `corsMaxAge` - If set, an Access-Control-Max-Age request header with this value (in seconds) will be added.  
   Example: `600` - Allow CORS preflight request to be cached by the browser for 10 minutes.
 * string `helpFile` - Set the help file (shown at the homepage).  
