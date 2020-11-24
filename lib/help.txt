@@ -1,0 +1,5 @@
+This CORS-api-server enables cross-origin requests to anywhere.
+
+
+Source code   :   https://github.com/sourabh48/CORS-api-server
+
