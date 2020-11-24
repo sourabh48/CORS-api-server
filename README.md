@@ -1,3 +1,5 @@
+#CORS-api-server#
+
 **CORS-api-server** is a NodeJS proxy which adds CORS headers to the proxied request.
 
 The url to proxy is literally taken from the path, validated and proxied. The protocol
